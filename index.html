@@ -36,9 +36,6 @@
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .page-hidden {
-                display: none !important;
-            }
             .card-shadow {
                 box-shadow: 0 4px 16px rgba(0,0,0,0.06);
             }
@@ -104,6 +101,9 @@
                 font-size: 1.5rem;
             }
         }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f9f7f2;
@@ -111,13 +111,13 @@
     </style>
 </head>
 <body class="gradient-bg min-h-screen">
-<!-- 导航栏：整体居中，桌面导航页面正中 -->
+<!-- 导航栏 -->
 <nav class="w-full px-6 md:px-12 py-6 flex items-center justify-center bg-white/60 backdrop-blur-md rounded-b-2xl card-shadow sticky top-0 z-50">
     <!-- 桌面端居中导航菜单 -->
     <div class="hidden md:flex gap-16 items-center">
-        <button onclick="switchPage('home')" class="nav-btn hover:text-black/70 transition">Home</button>
-        <button onclick="switchPage('works')" class="nav-btn hover:text-black/70 transition">Works</button>
-        <button onclick="switchPage('about')" class="nav-btn hover:text-black/70 transition">About</button>
+        <a href="#section-home" class="nav-btn hover:text-black/70 transition">Home</a>
+        <a href="#section-works" class="nav-btn hover:text-black/70 transition">Works</a>
+        <a href="#section-about" class="nav-btn hover:text-black/70 transition">About</a>
     </div>
     <!-- 移动端汉堡靠右 -->
     <div class="md:hidden absolute right-6 top-1/2 -translate-y-1/2">
@@ -129,21 +129,20 @@
 
 <div id="mobile-menu" class="hidden md:hidden fixed top-[88px] left-0 w-full bg-white/95 backdrop-blur-lg z-40 py-6 px-8 card-shadow">
     <div class="flex flex-col gap-8 text-2xl font-extrabold text-center">
-        <button onclick="switchPage('home'); mobileMenuToggle();" class="py-2">Home</button>
-        <button onclick="switchPage('works'); mobileMenuToggle();" class="py-2">Works</button>
-        <button onclick="switchPage('about'); mobileMenuToggle();" class="py-2">About</button>
+        <a href="#section-home" onclick="mobileMenuToggle()" class="py-2">Home</a>
+        <a href="#section-works" onclick="mobileMenuToggle()" class="py-2">Works</a>
+        <a href="#section-about" onclick="mobileMenuToggle()" class="py-2">About</a>
     </div>
 </div>
 
 <div class="max-w-7xl mx-auto px-6 md:px-10 py-12">
-    <!-- 首页 Home -->
-    <section id="page-home" class="page">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
+    <!-- 首页 Home 区块 -->
+    <section id="section-home" class="min-h-[85vh] flex items-center">
+        <div class="grid md:grid-cols-2 gap-12 items-center w-full">
             <div>
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
                     Hi, I'm <br>Minxia Luo
                 </h1>
-                <!-- 突出展示目标文案，删除英文简介 -->
                 <p class="text-2xl md:text-3xl font-bold text-darkMain mb-3">数据全链路开发者</p>
                 <p class="text-xl md:text-2xl text-gray-800 mb-8">爬虫取数 → 自动分析报告 → C端小程序产品</p>
                 <div class="space-y-4 mb-8">
@@ -165,9 +164,9 @@
                     <span class="bg-mint px-5 py-3 rounded-full font-medium">小程序 · Canvas · 本地数据分析</span>
                     <span class="bg-sky px-5 py-3 rounded-full font-medium">Matplotlib · Plotly · 统计建模</span>
                 </div>
-                <button onclick="switchPage('works')" class="bg-white border border-black px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3 hover:bg-black hover:text-white transition-all">
+                <a href="#section-works" class="inline-block bg-white border border-black px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3 hover:bg-black hover:text-white transition-all">
                     <i class="fa-solid fa-folder-open"></i> View All Projects
-                </button>
+                </a>
             </div>
             <div class="relative">
                 <div class="bg-sky/40 p-4 rounded-2xl card-shadow img-card">
@@ -185,10 +184,9 @@
         </div>
     </section>
 
-    <!-- 作品集 Works -->
-    <section id="page-works" class="page page-hidden mt-8">
+    <!-- 作品集 Works 区块 -->
+    <section id="section-works" class="pt-20">
         <h2 class="section-title">Technical Skills</h2>
-        <!-- 技术工具箱（移除标题文字，仅保留胶囊标签） -->
         <div class="mb-20">
             <div class="bg-white rounded-2xl p-8 card-shadow">
                 <div class="flex flex-wrap gap-3">
@@ -211,7 +209,7 @@
 
         <h2 class="section-title">Project Works</h2>
 
-        <!-- 项目1 Python一站式自动化数据分析平台（已删除在线演示地址按钮） -->
+        <!-- 项目1 -->
         <div class="bg-mint/30 rounded-2xl p-8 card-shadow mb-12">
             <div class="mb-4">
                 <h4 class="text-xl font-bold">Python一站式自动化数据分析平台</h4>
@@ -240,7 +238,7 @@
             </div>
         </div>
 
-        <!-- 项目2 饮食记录微信小程序 -->
+        <!-- 项目2 -->
         <div class="bg-peach/40 rounded-2xl p-8 card-shadow mb-12">
             <div class="mb-4">
                 <h4 class="text-xl font-bold">“今天选啥吃”微信小程序（本地用户数据分析）</h4>
@@ -275,8 +273,8 @@
             </div>
         </div>
 
-        <!-- 项目3 豆瓣Top250图书爬虫可视化 -->
-        <div class="bg-sky/30 rounded-2xl p-8 card-shadow">
+        <!-- 项目3 -->
+        <div class="bg-sky/30 rounded-2xl p-8 card-shadow mb-12">
             <div class="mb-4">
                 <h4 class="text-xl font-bold">豆瓣Top250图书数据采集与可视化分析</h4>
             </div>
@@ -301,8 +299,8 @@
         </div>
     </section>
 
-    <!-- About页面 -->
-    <section id="page-about" class="page page-hidden mt-8">
+    <!-- About 区块 -->
+    <section id="section-about" class="pt-20 pb-24">
         <div class="grid md:grid-cols-3 gap-10 mb-10">
             <div class="md:col-span-1 flex flex-col gap-8">
                 <div class="bg-sky/30 rounded-2xl p-6 card-shadow text-center">
@@ -321,8 +319,6 @@
                         <h4 class="font-bold text-xl mb-2">🎓 教育背景</h4>
                         <p>仲恺农业工程学院 数学与数据科学学院 统计学本科，系统学习数理统计、抽样、计量经济，自主拓展Python数据工程、Web可视化，独立完成3套完整落地项目。</p>
                     </div>
-
-                    <!-- 核心专业课 -->
                     <div>
                         <h4 class="font-bold text-xl mb-3">📚 核心专业课（校级高分）</h4>
                         <div class="flex flex-wrap gap-2 mb-3">
@@ -335,7 +331,6 @@
                         <p class="text-gray-600 mb-2">另：回归分析 · 数理统计 · 非参数统计 · 抽样调查 均分80+</p>
                         <p class="text-gray-700 font-medium">覆盖方向：编程与数据工具 | 数理统计 | 经济金融统计 | 建模实践</p>
                     </div>
-
                     <div>
                         <h4 class="font-bold text-xl mb-2">📅 竞赛与项目时间线</h4>
                         <ul class="space-y-2">
@@ -347,7 +342,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Contact Info 横跨整行 -->
             <div class="md:col-span-3">
                 <div class="bg-teal rounded-2xl p-6 card-shadow w-full">
                     <h3 class="text-3xl font-bold mb-6">Contact Info</h3>
@@ -384,8 +378,7 @@
             </div>
         </div>
 
-        <!-- 数据/IT相关证书 图片卡片原样恢复 -->
-        <div class="mb-20">
+        <div>
             <h3 class="text-4xl font-bold text-center mb-10">Award Certificates</h3>
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="bg-white rounded-xl p-6 card-shadow">
@@ -422,18 +415,10 @@
 </div>
 
 <script>
-    function switchPage(pageId) {
-        document.querySelectorAll('.page').forEach(page => {
-            page.classList.add('page-hidden');
-        })
-        document.getElementById(`page-${pageId}`).classList.remove('page-hidden');
-        window.scrollTo({top:0, behavior:'smooth'});
-    }
     function mobileMenuToggle() {
         const menu = document.getElementById('mobile-menu');
         menu.classList.toggle('hidden');
     }
-    switchPage('home');
 </script>
 </body>
 </html>
