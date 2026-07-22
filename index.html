@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Minxia Luo | 统计学 & 数据开发作品集</title>
+    <title>罗敏霞 | 统计学 & 数据开发实习与项目经历</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,9 +13,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
                     colors: {
                         cream: '#f9f7f2',
                         peach: '#ffdfc9',
@@ -25,101 +23,216 @@
                         darkMain: '#0f172a',
                         successGreen: '#22a848'
                     },
-                    borderRadius: {
-                        'xl': '16px',
-                        '2xl': '24px',
-                        'full-lg': '32px'
-                    }
+                    borderRadius: { xl: '16px', '2xl': '24px' }
                 }
             }
         }
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .card-shadow {
-                box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-            }
-            .float-robot {
-                animation: float 3s ease-in-out infinite;
-            }
+            .card-shadow { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+            .float-robot { animation: float 3s ease-in-out infinite; }
             @keyframes float {
                 0%,100% { transform: translateY(0px); }
                 50% { transform: translateY(-8px); }
             }
-            .gradient-bg {
-                background: linear-gradient(120deg, #fff7ef 0%, #f0faf5 100%);
-            }
-            .img-card {
+            .gradient-bg { background: linear-gradient(120deg, #fff7ef 0%, #f0faf5 100%); }
+            .img-card { overflow: hidden; border-radius: 12px; transition: transform 0.3s ease; }
+            .img-card:hover { transform: scale(1.05); }
+            .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem; text-align: center; }
+            .tag-sm { @apply bg-white px-3 py-1 rounded-full text-sm font-medium; }
+            .tag-sky { @apply bg-sky/30 px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap; }
+            .result-text { @apply font-bold text-lg flex items-center gap-2 my-4; }
+            .nav-btn { font-weight: 800; font-size: 1.5rem; }
+
+            /* 轮播核心样式 */
+            .carousel-outer {
+                position: relative;
+                width: 100%;
                 overflow: hidden;
-                border-radius: 12px;
-                transition: transform 0.3s ease;
             }
-            .img-card:hover {
-                transform: scale(1.05);
+            .carousel-track {
+                display: flex;
+                touch-action: pan-y;
+                cursor: grab;
             }
-            .section-title {
-                font-size: 2.5rem;
+            .carousel-track:active {
+                cursor: grabbing;
+            }
+            .slide-inner {
+                position: relative;
+                height: 60vh;
+                border-radius: 24px;
+                overflow: hidden;
+            }
+            .slide-inner img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .slide-content {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 0 48px;
+                color: white;
+                background: linear-gradient(to right, rgba(0,0,0,.45), rgba(0,0,0,.15));
+            }
+            .carousel-dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 999px;
+                background: #cccccc;
+                transition: all .3s;
+            }
+            .carousel-dot.active {
+                background: #000000;
+                width: 24px;
+            }
+
+            /* 实习经历专用样式 */
+            .stat-card {
+                background: white;
+                border-radius: 16px;
+                padding: 1.25rem 1rem;
+                text-align: center;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                border: 1px solid rgba(0,0,0,0.03);
+            }
+            .stat-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            }
+            .stat-number {
+                font-size: 2.2rem;
                 font-weight: 800;
-                margin-bottom: 2rem;
+                line-height: 1.2;
+                color: #0f172a;
+            }
+            .stat-number .highlight {
+                color: #14b8a6;
+            }
+            .stat-label {
+                font-size: 0.9rem;
+                color: #4b5563;
+                margin-top: 0.25rem;
+                font-weight: 500;
+            }
+            .stat-sub {
+                font-size: 0.75rem;
+                color: #9ca3af;
+                margin-top: 0.1rem;
+            }
+
+            .work-card {
+                background: #fafcfa;
+                border-radius: 16px;
+                padding: 1.5rem 1.75rem;
+                border-left: 5px solid #14b8a6;
+                transition: background 0.2s;
+                margin-bottom: 1.5rem;
+            }
+            .work-card:hover {
+                background: #f4f9f7;
+            }
+            .work-card .work-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+            .work-card .work-title i {
+                color: #14b8a6;
+                width: 1.5rem;
                 text-align: center;
             }
-            .project-item h4 {
-                font-size: 1.5rem;
-                font-weight: 800;
-                margin-bottom: 1rem;
-            }
-            .project-desc li {
-                margin-bottom: 0.8rem;
-                font-size: 1.05rem;
-            }
-            .project-desc strong {
-                font-size: 1.15rem;
-                color: #000;
-            }
-            .highlight-item {
-                font-size: 1.25rem;
-                font-weight: 800;
-                color: #000;
+            .work-card .work-meta {
                 display: flex;
-                align-items: flex-start;
-                gap: 0.75rem;
+                flex-wrap: wrap;
+                gap: 0.5rem 1.5rem;
+                font-size: 0.85rem;
+                color: #4b5563;
+                margin-bottom: 0.75rem;
             }
-            .tag-sm {
-                @apply bg-white px-3 py-1 rounded-full text-sm font-medium;
+            .work-card .work-meta .badge {
+                background: #e6f7f3;
+                padding: 0.1rem 0.7rem;
+                border-radius: 999px;
+                font-weight: 600;
+                color: #0d7a6e;
+                font-size: 0.75rem;
             }
-            .tag-sky {
-                @apply bg-sky/30 px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap;
+            .work-card p {
+                color: #1f2937;
+                line-height: 1.7;
+                margin-bottom: 0.4rem;
             }
-            .tag-right {
-                @apply bg-darkMain text-white px-4 py-2 rounded-lg text-sm font-medium;
+            .work-card .outcome {
+                margin-top: 0.6rem;
+                padding: 0.5rem 1rem;
+                background: #e6f7f3;
+                border-radius: 10px;
+                font-weight: 600;
+                color: #0d7a6e;
+                display: inline-block;
+                font-size: 0.9rem;
             }
-            .result-text {
-                @apply font-bold text-lg flex items-center gap-2 my-4;
+            .work-card .outcome i {
+                margin-right: 0.4rem;
             }
-            .nav-btn {
-                font-weight: 800;
-                font-size: 1.5rem;
+
+            .intern-tag-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+                border-top: 1px solid #e5e7eb;
+            }
+            .intern-tag-group .tag {
+                background: #f1f5f9;
+                padding: 0.25rem 1rem;
+                border-radius: 999px;
+                font-size: 0.8rem;
+                font-weight: 500;
+                color: #1e293b;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.3rem;
+            }
+            .intern-tag-group .tag i {
+                color: #14b8a6;
+                font-size: 0.7rem;
+            }
+
+            #section-home {
+                margin-bottom: 12rem;
+            }
+            #section-about {
+                padding-top: 6rem;
             }
         }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9f7f2;
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #f9f7f2; }
+        section {
+            scroll-margin-top: 100px;
         }
     </style>
 </head>
 <body class="gradient-bg min-h-screen">
 <!-- 导航栏 -->
 <nav class="w-full px-6 md:px-12 py-6 flex items-center justify-center bg-white/60 backdrop-blur-md rounded-b-2xl card-shadow sticky top-0 z-50">
-    <!-- 桌面端居中导航菜单 -->
     <div class="hidden md:flex gap-16 items-center">
-        <a href="#section-home" class="nav-btn hover:text-black/70 transition">Home</a>
-        <a href="#section-works" class="nav-btn hover:text-black/70 transition">Works</a>
-        <a href="#section-about" class="nav-btn hover:text-black/70 transition">About</a>
+        <a href="#section-home" class="nav-btn hover:text-black/60 transition">首页</a>
+        <a href="#section-about" class="nav-btn hover:text-black/60 transition">关于我</a>
+        <a href="#section-internship" class="nav-btn hover:text-black/60 transition">实习经历</a>
+        <a href="#section-works" class="nav-btn hover:text-black/60 transition">项目经历</a>
     </div>
-    <!-- 移动端汉堡靠右 -->
     <div class="md:hidden absolute right-6 top-1/2 -translate-y-1/2">
         <button onclick="mobileMenuToggle()" class="text-2xl">
             <i class="fa-solid fa-bars"></i>
@@ -129,64 +242,344 @@
 
 <div id="mobile-menu" class="hidden md:hidden fixed top-[88px] left-0 w-full bg-white/95 backdrop-blur-lg z-40 py-6 px-8 card-shadow">
     <div class="flex flex-col gap-8 text-2xl font-extrabold text-center">
-        <a href="#section-home" onclick="mobileMenuToggle()" class="py-2">Home</a>
-        <a href="#section-works" onclick="mobileMenuToggle()" class="py-2">Works</a>
-        <a href="#section-about" onclick="mobileMenuToggle()" class="py-2">About</a>
+        <a href="#section-home" onclick="mobileMenuToggle()" class="py-2">首页</a>
+        <a href="#section-about" onclick="mobileMenuToggle()" class="py-2">关于我</a>
+        <a href="#section-internship" onclick="mobileMenuToggle()" class="py-2">实习经历</a>
+        <a href="#section-works" onclick="mobileMenuToggle()" class="py-2">项目经历</a>
     </div>
 </div>
 
 <div class="max-w-7xl mx-auto px-6 md:px-10 py-12">
-    <!-- 首页 Home 区块 -->
-    <section id="section-home" class="min-h-[85vh] flex items-center">
-        <div class="grid md:grid-cols-2 gap-12 items-center w-full">
-            <div>
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
-                    Hi, I'm <br>Minxia Luo
-                </h1>
-                <p class="text-2xl md:text-3xl font-bold text-darkMain mb-3">数据全链路开发者</p>
-                <p class="text-xl md:text-2xl text-gray-800 mb-8">爬虫取数 → 自动分析报告 → C端小程序产品</p>
-                <div class="space-y-4 mb-8">
-                    <p class="highlight-item">
-                        <i class="fa-solid fa-check text-successGreen mt-1 shrink-0"></i>
-                        独立搭建3套全链路项目：采集→清洗→建模→可视化
-                    </p>
-                    <p class="highlight-item">
-                        <i class="fa-solid fa-check text-successGreen mt-1 shrink-0"></i>
-                        自动化报表工具，将2小时人工工作压缩至35分钟
-                    </p>
-                    <p class="highlight-item">
-                        <i class="fa-solid fa-check text-successGreen mt-1 shrink-0"></i>
-                        掌握爬虫/ETL/统计建模/交互可视化全流程技术栈
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-3 mb-10">
-                    <span class="bg-peach px-5 py-3 rounded-full font-medium">Python · Streamlit · ETL</span>
-                    <span class="bg-mint px-5 py-3 rounded-full font-medium">小程序 · Canvas · 本地数据分析</span>
-                    <span class="bg-sky px-5 py-3 rounded-full font-medium">Matplotlib · Plotly · 统计建模</span>
-                </div>
-                <a href="#section-works" class="inline-block bg-white border border-black px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3 hover:bg-black hover:text-white transition-all">
-                    <i class="fa-solid fa-folder-open"></i> View All Projects
-                </a>
-            </div>
-            <div class="relative">
-                <div class="bg-sky/40 p-4 rounded-2xl card-shadow img-card">
-                    <img src="data-screen-full.jpg" alt="综合数据大屏" class="w-full max-h-72 object-contain mx-auto rounded-xl">
-                    <div class="mt-3 text-sm text-gray-700">
-                        <p><strong>指标总览：</strong>全平台业务数据1282条；监控指标：营收同比、预算环比、超支预警阈值；数据源：本地Excel业务台账</p>
+    <!-- ========== 首页轮播 ========== -->
+    <section id="section-home" class="mb-40">
+        <div class="carousel-outer">
+            <div class="carousel-track">
+                <!-- 第1页：个人介绍 -->
+                <div class="carousel-slide">
+                    <div class="slide-inner">
+                        <img src="avatar-screen.jpg" alt="个人介绍">
+                        <div class="slide-content">
+                            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">你好，我是罗敏霞</h1>
+                            <p class="text-xl md:text-2xl mb-6">数据全链路开发者｜统计学专业</p>
+                            <p class="text-lg mb-6">掌握爬虫/ETL/统计建模/交互可视化全流程技术栈</p>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#section-works" class="w-fit bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">查看全部项目</a>
+                                <a href="#section-about" class="w-fit bg-white/90 text-black px-6 py-3 rounded-lg font-medium hover:bg-white transition border border-white/30">查看个人信息</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="absolute -right-6 -bottom-6 float-robot">
-                    <div class="w-28 h-28 bg-white rounded-xl card-shadow flex items-center justify-center text-4xl">🤖</div>
+
+                <!-- 第2页：数据仓库开发实习（保留但用户未提及，我们保留） -->
+                <div class="carousel-slide">
+                    <div class="slide-inner">
+                        <img src="work-screen.jpg" alt="实习经历">
+                        <div class="slide-content">
+                            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">数据仓库开发实习</h1>
+                            <p class="text-xl md:text-2xl mb-6">广州影子科技 · 数据仓库开发</p>
+                            <p class="text-lg mb-6">数据治理、BI看板搭建、SQL优化、制作月报PPT</p>
+                            <a href="#section-internship" class="w-fit bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">查看详情</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="absolute top-10 -left-8 w-10 h-10 rounded-full bg-peach/60"></div>
-                <div class="absolute bottom-20 -left-4 w-6 h-6 rounded-full bg-mint/60"></div>
+
+                <!-- 第3页：Python自动化分析平台 -->
+                <div class="carousel-slide">
+                    <div class="slide-inner">
+                        <img src="screen.jpg" alt="自动化分析平台">
+                        <div class="slide-content">
+                            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Python自动化分析平台</h1>
+                            <p class="text-xl md:text-2xl mb-6">报表制作时长 2h → 35min</p>
+                            <p class="text-lg mb-6">自动完成清洗、绘图、分析、PPT导出全流程</p>
+                            <a href="#project-auto" class="w-fit bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">了解项目</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第4页：微信小程序 -->
+                <div class="carousel-slide">
+                    <div class="slide-inner">
+                        <img src="food-sreeen.jpg" alt="微信小程序">
+                        <div class="slide-content">
+                            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">“今天选啥吃”小程序</h1>
+                            <p class="text-xl md:text-2xl mb-6">轻量化本地用户行为分析工具</p>
+                            <p class="text-lg mb-6">统计就餐频次、菜系偏好，内置600+菜品分类库</p>
+                            <a href="#project-mini" class="w-fit bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">体验小程序</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第5页：豆瓣Top250爬虫 -->
+                <div class="carousel-slide">
+                    <div class="slide-inner">
+                        <img src="book-screen.jpg" alt="爬虫数据分析">
+                        <div class="slide-content">
+                            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">豆瓣Top250爬虫分析</h1>
+                            <p class="text-xl md:text-2xl mb-6">数据采集→清洗→建模→可视化</p>
+                            <p class="text-lg mb-6">产出250条标准化数据集，量化优质图书规律</p>
+                            <a href="#project-douban" class="w-fit bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">查看案例</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="prevBtn" class="absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 rounded-full bg-white/70 hover:bg-white flex items-center justify-center z-10">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="nextBtn" class="absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 rounded-full bg-white/70 hover:bg-white flex items-center justify-center z-10">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="flex justify-center gap-3 mt-6">
+            <button class="carousel-dot active" data-index="0"></button>
+            <button class="carousel-dot" data-index="1"></button>
+            <button class="carousel-dot" data-index="2"></button>
+            <button class="carousel-dot" data-index="3"></button>
+            <button class="carousel-dot" data-index="4"></button>
+        </div>
+    </section>
+
+    <!-- ========== 关于我 ========== -->
+    <section id="section-about" class="pt-24 pb-24">
+        <div class="grid md:grid-cols-3 gap-10 mb-10">
+            <div class="md:col-span-1 flex flex-col gap-8">
+                <div class="bg-sky/30 rounded-2xl p-6 card-shadow text-center">
+                    <div class="img-card mb-4">
+                        <img src="avatar.jpg" alt="个人证件照" class="w-full h-auto max-h-80 object-contain mx-auto">
+                    </div>
+                    <div class="float-robot inline-block -mt-10">🤖</div>
+                    <h3 class="text-2xl font-bold mt-6">罗敏霞</h3>
+                    <p class="text-gray-600">仲恺农业工程学院 · 统计学专业</p>
+                </div>
+            </div>
+            <div class="md:col-span-2">
+                <h2 class="text-4xl font-bold mb-6">个人简介</h2>
+                <div class="space-y-6 text-lg leading-relaxed">
+                    <div>
+                        <h4 class="font-bold text-xl mb-2">🎓 教育背景</h4>
+                        <p>仲恺农业工程学院 数学与数据科学学院 统计学本科，系统学习数理统计、抽样、计量经济，自主拓展Python数据工程、Web可视化，独立完成3套完整落地项目。</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl mb-3">📚 核心专业课（校级高分）</h4>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="tag-sm bg-sky/30">Python程序设计 94</span>
+                            <span class="tag-sm bg-sky/30">数学建模 92</span>
+                            <span class="tag-sm bg-sky/30">高等代数 90</span>
+                            <span class="tag-sm bg-sky/30">多元统计分析 87</span>
+                            <span class="tag-sm bg-sky/30">统计预测与决策 87</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">另：回归分析 · 数理统计 · 非参数统计 · 抽样调查 均分80+</p>
+                        <p class="text-gray-700 font-medium">覆盖方向：编程与数据工具 | 数理统计 | 经济金融统计 | 建模实践</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl mb-2">📅 时间线</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <span class="w-16 shrink-0 font-medium">2023 ·</span>
+                                <span>豆瓣Top250爬虫与可视化分析</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-16 shrink-0 font-medium">2024 ·</span>
+                                <span>全国数据分析实践赛（SPSS+Python）</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-16 shrink-0 font-medium">2025 ·</span>
+                                <span>东方财富杯省一等奖；全国Word竞赛三等奖</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-16 shrink-0 font-medium">2026 ·</span>
+                                <span>广州影子科技 · 数据仓库开发实习</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-16 shrink-0"></span>
+                                <span>“今天选啥吃”小程序 + Python自动化分析平台</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-3">
+                <div class="bg-teal rounded-2xl p-6 card-shadow w-full">
+                    <h3 class="text-3xl font-bold mb-6">联系方式</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white px-5 py-3 rounded-full flex items-center gap-3 card-shadow h-full">
+                            <div class="w-10 h-10 bg-teal/50 rounded-full flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope text-darkMain"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">邮箱</p>
+                                <p class="text-sm font-medium">1533647985@qq.com</p>
+                            </div>
+                        </div>
+                        <div class="bg-white px-5 py-3 rounded-full flex items-center gap-3 card-shadow h-full">
+                            <div class="w-10 h-10 bg-teal/50 rounded-full flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone text-darkMain"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">电话</p>
+                                <p class="text-sm font-medium">135 5697 5481</p>
+                            </div>
+                        </div>
+                        <div class="bg-white px-5 py-3 rounded-full flex items-center gap-3 card-shadow h-full">
+                            <div class="w-10 h-10 bg-teal/50 rounded-full flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-weixin text-darkMain"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">微信</p>
+                                <p class="text-sm font-medium">MDX110333</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3 class="text-4xl font-bold text-center mb-10">获奖证书</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <div class="img-card mb-4">
+                        <img src="cert-data-1.jpg" alt="数据分析实践赛证书" class="w-full max-h-56 object-contain mx-auto">
+                    </div>
+                    <h4 class="font-bold text-xl">数据分析专业技能证书</h4>
+                    <p class="text-gray-600">2024 第三届全国大学生数据分析实践赛（国家级）</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <div class="img-card mb-4">
+                        <img src="cert-data-2.jpg" alt="数据分析科普竞赛证书" class="w-full max-h-56 object-contain mx-auto">
+                    </div>
+                    <h4 class="font-bold text-xl">数据分析科普竞赛技能证书</h4>
+                    <p class="text-gray-600">2024 全国统计建模数据分析竞赛</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <div class="img-card mb-4">
+                        <img src="cert-finance.jpg" alt="东方财富杯省一等奖" class="w-full max-h-56 object-contain mx-auto">
+                    </div>
+                    <h4 class="font-bold text-xl">东方财富杯 省赛一等奖</h4>
+                    <p class="text-gray-600">全国金融量化建模挑战赛</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <div class="img-card mb-4">
+                        <img src="cert-word.jpg" alt="Word全国三等奖证书" class="w-full max-h-56 object-contain mx-auto">
+                    </div>
+                    <h4 class="font-bold text-xl">全国信息技术挑战赛 Word 三等奖</h4>
+                    <p class="text-gray-600">数据报表文档标准化认证</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 作品集 Works 区块 -->
-    <section id="section-works" class="pt-20">
-        <h2 class="section-title">Technical Skills</h2>
+    <!-- ========== 实习经历 ========== -->
+    <section id="section-internship" class="pt-10 pb-24">
+        <h2 class="section-title">实习经历</h2>
+
+        <div class="bg-white rounded-2xl p-8 card-shadow">
+
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-16 h-16 bg-teal/30 rounded-full flex items-center justify-center text-3xl">🏢</div>
+                <div>
+                    <h3 class="text-3xl font-bold">广州影子科技有限公司</h3>
+                    <p class="text-xl text-gray-600">数据仓库开发实习生 · 2026.01 – 2026.04</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                <div class="stat-card">
+                    <div class="stat-number"><span class="highlight">800+</span></div>
+                    <div class="stat-label">表注释梳理</div>
+                    <div class="stat-sub">表注释规范落地</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><span class="highlight">2万+</span></div>
+                    <div class="stat-label">字段注释梳理</div>
+                    <div class="stat-sub">字段注释规范落地</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><span class="highlight">12</span></div>
+                    <div class="stat-label">看板搭建</div>
+                    <div class="stat-sub">PowerBI · T+1 自动更新</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><span class="highlight">50%</span></div>
+                    <div class="stat-label">报表效率提升</div>
+                    <div class="stat-sub">SQL 重构 + 主动优化</div>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-title">
+                    <i class="fa-solid fa-database"></i> 数据字典与注释规范建设
+                    <span class="badge">细致 · 主动</span>
+                </div>
+                <div class="work-meta">
+                    <span><i class="fa-regular fa-circle-check text-teal-600"></i> 800+ 表 · 2万+ 字段</span>
+                    <span><i class="fa-regular fa-clock"></i> 注释梳理 + AI 辅助</span>
+                </div>
+                <p><strong>背景：</strong>公司数据表缺乏中文注释，业务取数需反复沟通，效率低且易出错。</p>
+                <p><strong>动作：</strong>完成表/字段注释梳理，借助 Claude Code、DeepSeek 生成初版注释，再结合业务场景逐条审核修正，形成字段命名与业务含义的映射规范。</p>
+                <div class="outcome"><i class="fa-solid fa-check"></i> 消除跨部门沟通歧义，字段查询准确率提升</div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-title">
+                    <i class="fa-solid fa-chart-pie"></i> BI 看板搭建与可视化
+                    <span class="badge">抗压 · 洞察</span>
+                </div>
+                <div class="work-meta">
+                    <span><i class="fa-regular fa-circle-check text-teal-600"></i> 12 个核心看板</span>
+                    <span><i class="fa-regular fa-clock"></i> T+1 自动更新</span>
+                    <span><i class="fa-regular fa-user"></i> 自助取数覆盖率 80%</span>
+                </div>
+                <p><strong>背景：</strong> 旧版 BI 工具停用，运营团队需将核心监控看板迁移至 PowerBI 并重构数据链路。</p>
+                <p><strong>动作：</strong>基于 PowerBI 迁移并搭建 12 个运营核心指标看板。独立完成淘汰分析、PSY红绿灯、NPD分析、配怀异常、批次管理、实时存栏、肉猪死亡分析、平均饲养量和后备母猪等12个仪表板迁移。</p>
+                <div class="outcome"><i class="fa-solid fa-check"></i> 看板上线即成为运营团队每日必看页面</div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-title">
+                    <i class="fa-solid fa-code"></i> SQL 优化与运营报告自动化
+                    <span class="badge">主动反哺</span>
+                </div>
+                <div class="work-meta">
+                    <span><i class="fa-regular fa-circle-check text-teal-600"></i> 3 个核心报表重构</span>
+                    <span><i class="fa-regular fa-clock"></i> PowerBI 性能优化</span>
+                    <span><i class="fa-regular fa-pen-to-square"></i>  Python 自动化 + PPT</span>
+                </div>
+                <p><strong>背景：</strong>PowerBI 看板底层 SQL 存在性能瓶颈与动态参数不兼容问题；此外，月度运营报告 PPT 需手工处理数据，制作耗时较长。</p>
+                <p><strong>动作：</strong>① 重构 3 个核心看板的 SQL 查询逻辑，优化多表关联，修复动态参数兼容性问题，提升 PowerBI 看板性能。② 独立开发 Python 自动化分析工具，实现数据提取后自动生成月度运营报告 PPT。</p>
+                <div class="outcome"><i class="fa-solid fa-check"></i> 看板查询性能提升，月度报告 PPT 制作时长缩短</div>
+            </div>
+
+            <div style="background:#f8fafc; border-radius:14px; padding:1rem 1.75rem; margin-top:0.5rem; border-left:3px solid #94a3b8;">
+                <p style="font-size:0.95rem; color:#334155; display:flex; align-items:center; gap:0.5rem;">
+                    <i class="fa-solid fa-tools text-gray-400"></i>
+                    <span><strong>其他支持：</strong>Excel 辅助图表 · 神策区域可视化 · 异常分析报告输出。实习期间始终保持主动思考，多次提出优化建议并被采纳。</span>
+                </p>
+            </div>
+
+            <div class="intern-tag-group">
+                <span class="tag"><i class="fa-solid fa-check-circle"></i> PowerBI</span>
+                <span class="tag"><i class="fa-solid fa-check-circle"></i> SQL 调优</span>
+                <span class="tag"><i class="fa-solid fa-check-circle"></i> Python 可视化</span>
+                <span class="tag"><i class="fa-solid fa-check-circle"></i> 神策分析</span>
+                <span class="tag"><i class="fa-solid fa-check-circle"></i> 数据字典</span>
+                <span class="tag"><i class="fa-solid fa-check-circle"></i> ETL</span>
+                <span class="tag"><i class="fa-solid fa-check-circle"></i> Claude / DeepSeek</span>
+                <span class="tag"><i class="fa-solid fa-check-circle"></i> Excel 高级图表</span>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3 border-t pt-5">
+                <span class="tag-sm bg-teal/20"><i class="fa-solid fa-check-circle text-teal-600 mr-1"></i> 800+表、2万+字段注释梳理</span>
+                <span class="tag-sm bg-teal/20"><i class="fa-solid fa-check-circle text-teal-600 mr-1"></i> 12个看板搭建</span>
+                <span class="tag-sm bg-teal/20"><i class="fa-solid fa-check-circle text-teal-600 mr-1"></i> 异常看板紧急交付</span>
+                <span class="tag-sm bg-teal/20"><i class="fa-solid fa-check-circle text-teal-600 mr-1"></i> 报表效率提升50%</span>
+                <span class="tag-sm bg-teal/20"><i class="fa-solid fa-check-circle text-teal-600 mr-1"></i> SQL主动优化</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== 项目经历 ========== -->
+    <section id="section-works" class="pt-10 pb-24">
+        <h2 class="section-title">技术技能</h2>
         <div class="mb-20">
             <div class="bg-white rounded-2xl p-8 card-shadow">
                 <div class="flex flex-wrap gap-3">
@@ -207,10 +600,10 @@
             </div>
         </div>
 
-        <h2 class="section-title">Project Works</h2>
+        <h2 class="section-title">项目作品</h2>
 
-        <!-- 项目1 -->
-        <div class="bg-mint/30 rounded-2xl p-8 card-shadow mb-12">
+        <!-- 项目1：Python自动化平台 -->
+        <div id="project-auto" class="bg-mint/30 rounded-2xl p-8 card-shadow mb-12">
             <div class="mb-4">
                 <h4 class="text-xl font-bold">Python一站式自动化数据分析平台</h4>
             </div>
@@ -238,8 +631,8 @@
             </div>
         </div>
 
-        <!-- 项目2 -->
-        <div class="bg-peach/40 rounded-2xl p-8 card-shadow mb-12">
+        <!-- 项目2：微信小程序 -->
+        <div id="project-mini" class="bg-peach/40 rounded-2xl p-8 card-shadow mb-12">
             <div class="mb-4">
                 <h4 class="text-xl font-bold">“今天选啥吃”微信小程序（本地用户数据分析）</h4>
             </div>
@@ -273,8 +666,8 @@
             </div>
         </div>
 
-        <!-- 项目3 -->
-        <div class="bg-sky/30 rounded-2xl p-8 card-shadow mb-12">
+        <!-- 项目3：豆瓣爬虫 -->
+        <div id="project-douban" class="bg-sky/30 rounded-2xl p-8 card-shadow mb-12">
             <div class="mb-4">
                 <h4 class="text-xl font-bold">豆瓣Top250图书数据采集与可视化分析</h4>
             </div>
@@ -298,127 +691,140 @@
             </div>
         </div>
     </section>
-
-    <!-- About 区块 -->
-    <section id="section-about" class="pt-20 pb-24">
-        <div class="grid md:grid-cols-3 gap-10 mb-10">
-            <div class="md:col-span-1 flex flex-col gap-8">
-                <div class="bg-sky/30 rounded-2xl p-6 card-shadow text-center">
-                    <div class="img-card mb-4">
-                        <img src="avatar.jpg" alt="个人证件照" class="w-full h-auto max-h-80 object-contain mx-auto">
-                    </div>
-                    <div class="float-robot inline-block -mt-10">🤖</div>
-                    <h3 class="text-2xl font-bold mt-6">罗敏霞</h3>
-                    <p class="text-gray-600">仲恺农业工程学院 · 统计学专业</p>
-                </div>
-            </div>
-            <div class="md:col-span-2">
-                <h2 class="text-4xl font-bold mb-6">About Me</h2>
-                <div class="space-y-6 text-lg leading-relaxed">
-                    <div>
-                        <h4 class="font-bold text-xl mb-2">🎓 教育背景</h4>
-                        <p>仲恺农业工程学院 数学与数据科学学院 统计学本科，系统学习数理统计、抽样、计量经济，自主拓展Python数据工程、Web可视化，独立完成3套完整落地项目。</p>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-xl mb-3">📚 核心专业课（校级高分）</h4>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="tag-sm bg-sky/30">Python程序设计 94</span>
-                            <span class="tag-sm bg-sky/30">数学建模 92</span>
-                            <span class="tag-sm bg-sky/30">高等代数 90</span>
-                            <span class="tag-sm bg-sky/30">多元统计分析 87</span>
-                            <span class="tag-sm bg-sky/30">统计预测与决策 87</span>
-                        </div>
-                        <p class="text-gray-600 mb-2">另：回归分析 · 数理统计 · 非参数统计 · 抽样调查 均分80+</p>
-                        <p class="text-gray-700 font-medium">覆盖方向：编程与数据工具 | 数理统计 | 经济金融统计 | 建模实践</p>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-xl mb-2">📅 竞赛与项目时间线</h4>
-                        <ul class="space-y-2">
-                            <li>2023 · 豆瓣Top250爬虫与可视化分析</li>
-                            <li>2024 · 全国数据分析实践赛（SPSS+Python）</li>
-                            <li>2025 · 东方财富杯省一等奖；全国Word竞赛三等奖</li>
-                            <li>2026 · "今天选啥吃"小程序 + Python自动化分析平台</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="md:col-span-3">
-                <div class="bg-teal rounded-2xl p-6 card-shadow w-full">
-                    <h3 class="text-3xl font-bold mb-6">Contact Info</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-white px-5 py-3 rounded-full flex items-center gap-3 card-shadow h-full">
-                            <div class="w-10 h-10 bg-teal/50 rounded-full flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-envelope text-darkMain"></i>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500">邮箱</p>
-                                <p class="text-sm font-medium">1533647985@qq.com</p>
-                            </div>
-                        </div>
-                        <div class="bg-white px-5 py-3 rounded-full flex items-center gap-3 card-shadow h-full">
-                            <div class="w-10 h-10 bg-teal/50 rounded-full flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-phone text-darkMain"></i>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500">电话</p>
-                                <p class="text-sm font-medium">135 5697 5481</p>
-                            </div>
-                        </div>
-                        <div class="bg-white px-5 py-3 rounded-full flex items-center gap-3 card-shadow h-full">
-                            <div class="w-10 h-10 bg-teal/50 rounded-full flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-weixin text-darkMain"></i>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500">微信</p>
-                                <p class="text-sm font-medium">MDX110333</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <h3 class="text-4xl font-bold text-center mb-10">Award Certificates</h3>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white rounded-xl p-6 card-shadow">
-                    <div class="img-card mb-4">
-                        <img src="cert-data-1.jpg" alt="数据分析实践赛证书" class="w-full max-h-56 object-contain mx-auto">
-                    </div>
-                    <h4 class="font-bold text-xl">数据分析专业技能证书</h4>
-                    <p class="text-gray-600">2024 第三届全国大学生数据分析实践赛（国家级）</p>
-                </div>
-                <div class="bg-white rounded-xl p-6 card-shadow">
-                    <div class="img-card mb-4">
-                        <img src="cert-data-2.jpg" alt="数据分析科普竞赛证书" class="w-full max-h-56 object-contain mx-auto">
-                    </div>
-                    <h4 class="font-bold text-xl">数据分析科普竞赛技能证书</h4>
-                    <p class="text-gray-600">2024 全国统计建模数据分析竞赛</p>
-                </div>
-                <div class="bg-white rounded-xl p-6 card-shadow">
-                    <div class="img-card mb-4">
-                        <img src="cert-finance.jpg" alt="东方财富杯省一等奖" class="w-full max-h-56 object-contain mx-auto">
-                    </div>
-                    <h4 class="font-bold text-xl">东方财富杯 省赛一等奖</h4>
-                    <p class="text-gray-600">全国金融量化建模挑战赛</p>
-                </div>
-                <div class="bg-white rounded-xl p-6 card-shadow">
-                    <div class="img-card mb-4">
-                        <img src="cert-word.jpg" alt="Word全国三等奖证书" class="w-full max-h-56 object-contain mx-auto">
-                    </div>
-                    <h4 class="font-bold text-xl">全国信息技术挑战赛 Word 三等奖</h4>
-                    <p class="text-gray-600">数据报表文档标准化认证</p>
-                </div>
-            </div>
-        </div>
-    </section>
 </div>
 
 <script>
-    function mobileMenuToggle() {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
+function mobileMenuToggle() {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+}
+
+// ===================== 轮播逻辑 =====================
+const track = document.querySelector('.carousel-track');
+const dots = document.querySelectorAll('.carousel-dot');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+const gapSize = 24;
+const slideViewPercent = 84;
+const originalSlideCount = document.querySelectorAll('.carousel-slide').length;
+
+let slides = Array.from(document.querySelectorAll('.carousel-slide'));
+let currentIndex = 0;
+let isDragging = false;
+let startX = 0;
+let moveX = 0;
+let startTranslate = 0;
+const animationTime = 600;
+const dragThreshold = 60;
+
+const firstClone = slides[0].cloneNode(true);
+const lastClone = slides[slides.length - 1].cloneNode(true);
+track.prepend(lastClone);
+track.appendChild(firstClone);
+slides = Array.from(track.querySelectorAll('.carousel-slide'));
+
+const totalGapPercent = (gapSize / track.clientWidth) * 100;
+const singleSlidePercent = slideViewPercent;
+const offsetPercent = (100 - singleSlidePercent) / 2;
+
+track.style.columnGap = `${gapSize}px`;
+slides.forEach(item => {
+    item.style.flex = `0 0 ${singleSlidePercent}%`;
+});
+
+function getTranslateX() {
+    const transform = window.getComputedStyle(track).transform;
+    if (transform === 'none') return 0;
+    const matrix = new WebKitCSSMatrix(transform);
+    return matrix.m41;
+}
+function setTransition(enable) {
+    track.style.transition = enable ? `transform ${animationTime}ms ease-out` : 'none';
+}
+function render(skipAnim = false) {
+    setTransition(!skipAnim);
+    const translateValue = (currentIndex + 1) * (singleSlidePercent + totalGapPercent) - offsetPercent;
+    track.style.transform = `translateX(-${translateValue}%)`;
+    dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentIndex));
+}
+function slideNext() {
+    currentIndex++;
+    render();
+    if (currentIndex >= originalSlideCount) {
+        setTimeout(() => {
+            currentIndex = 0;
+            render(true);
+        }, animationTime);
     }
+}
+function slidePrev() {
+    currentIndex--;
+    render();
+    if (currentIndex < 0) {
+        setTimeout(() => {
+            currentIndex = originalSlideCount - 1;
+            render(true);
+        }, animationTime);
+    }
+}
+
+track.addEventListener('mousedown', e => {
+    isDragging = true;
+    startX = e.clientX;
+    startTranslate = getTranslateX();
+    setTransition(false);
+    track.style.cursor = 'grabbing';
+    e.preventDefault();
+});
+window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    moveX = e.clientX - startX;
+    track.style.transform = `translateX(${startTranslate + moveX}px)`;
+});
+window.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.cursor = 'grab';
+    if (moveX > dragThreshold) slidePrev();
+    else if (moveX < -dragThreshold) slideNext();
+    else render();
+    moveX = 0;
+});
+
+track.addEventListener('touchstart', e => {
+    isDragging = true;
+    startX = e.touches[0].clientX;
+    startTranslate = getTranslateX();
+    setTransition(false);
+}, { passive:true });
+track.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    moveX = e.touches[0].clientX - startX;
+    track.style.transform = `translateX(${startTranslate + moveX}px)`;
+}, { passive:true });
+track.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    if (moveX > dragThreshold) slidePrev();
+    else if (moveX < -dragThreshold) slideNext();
+    else render();
+    moveX = 0;
+});
+
+nextBtn.onclick = slideNext;
+prevBtn.onclick = slidePrev;
+dots.forEach(dot => {
+    dot.onclick = () => {
+        currentIndex = Number(dot.dataset.index);
+        render();
+    }
+});
+
+window.addEventListener('resize', ()=>{
+    render(true);
+})
+
+render(true);
 </script>
 </body>
 </html>
